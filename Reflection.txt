@@ -1,0 +1,4 @@
+When completing this assignment, I felt really good with understading search as a whole. I quickly figured out the steps needed to check
+off each node and get to the end. However when trying to implement this code I found a lot more difficulty. Since this class is my
+first experience with python, I struggled a lot with some of the smaller details. I did a lot of googling and talked with some 
+friends to help me though, and I ended up completing it. I really found this project interesting and I am glad i was able to finish it.
