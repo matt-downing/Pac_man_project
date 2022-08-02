@@ -16,9 +16,9 @@
 In search.py, you will implement generic search algorithms which are called by
 Pacman agents (in searchAgents.py).
 """
+print('start')
 
-from argparse import Action
-from platform import node
+from inspect import stack
 import util
 
 class SearchProblem:
@@ -87,47 +87,54 @@ def depthFirstSearch(problem: SearchProblem):
     print("Start:", problem.getStartState())
     print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
-    
-    x = problem.getSuccessors(problem.getStartState)
-    print(x)
-    
-    """my_stack = util.Stack()
-    my_stack.push(problem.getStartState())
-    visited = []
-    if problem.isGoalState(problem.getStartState):
-        return
-    else:
-        my_stack.pop()
-        my_stack.push(problem.getSuccessors(problem.getStartState))
-    print(my_stack.pop())"""
-
-
-
-  #  while not my_stack.isEmpty:
-     #   currentNode, action = my_stack.pop()
-      #  visited.append(currentNode)
-      #  if currentNode == problem.isGoalState:
-     #       return 
-       # else:
-      #      my_stack.push(problem.getSuccessors(currentNode))
-
+    "*** YOUR CODE HERE ***"
+    from util import Stack
+    from game import Directions
  
+    my_stack = Stack()
+    visited = []
+ 
+    my_stack.push((problem.getStartState(), []))
+ 
+    while not my_stack.isEmpty():
         
-    
-    
-        
-
-
-
-
-
-
-    util.raiseNotDefined()
+        currentNode, actions = my_stack.pop()
+ 
+        if problem.isGoalState(currentNode):
+            return actions
+ 
+        if currentNode not in visited:
+            child = problem.getSuccessors(currentNode)
+            visited.append(currentNode)
+            for location, direction, cost in child:
+                if (location not in visited):
+                    my_stack.push((location, actions + [direction]))
 
 def breadthFirstSearch(problem: SearchProblem):
     """Search the shallowest nodes in the search tree first."""
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    from util import Queue
+    from game import Directions
+    
+    my_queue = Queue()
+    visited = []
+    
+    my_queue.push((problem.getStartState(), []))
+    
+    while not my_queue.isEmpty():
+        currentNode, actions = my_queue.pop()
+ 
+        if problem.isGoalState(currentNode):
+            return actions
+ 
+        if currentNode not in visited:
+            child = problem.getSuccessors(currentNode)
+            visited.append(currentNode)
+ 
+            for location, direction, cost in child:
+                if (location not in closed):
+                    my_queue.push((location, actions + [direction]))
+
 
 def uniformCostSearch(problem: SearchProblem):
     """Search the node of least total cost first."""
